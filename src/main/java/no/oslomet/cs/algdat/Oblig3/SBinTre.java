@@ -118,8 +118,20 @@ public class SBinTre<T> {
     }
 
     public int antall(T verdi) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
-    }
+        Node<T> p = rot; //Initialiserer p
+        int antVal = 0; //Hjelpevariabel for antall verdier.
+        while (p != null) {
+            int compr = comp.compare(verdi, p.verdi); //sammenligner verdier
+            if (compr < 0) { //Oppdaterer venstrebarn
+                p = p.venstre;
+            } else {
+                if (compr == 0) antVal++; //Funnet like verdier, og oppdaterer høyrebarn
+                p = p.høyre;
+            }
+        }
+        return antVal;
+        }
+
 
     public void nullstill() {
         throw new UnsupportedOperationException("Ikke kodet ennå!");
