@@ -174,7 +174,6 @@ public class SBinTre<T> {
             oppgave.utførOppgave(Objects.requireNonNull(forste).verdi);
             //jeg har laget while løkke som looper gjennom treet og oppdaterer neste verdi i postorden.
         }
-
     }
 
     public void postordenRecursive(Oppgave<? super T> oppgave) {
@@ -191,7 +190,6 @@ public class SBinTre<T> {
             postordenRecursive(p.venstre, oppgave); //går gjennom treet for p sitt venstre barn og utføre oppgave...
             postordenRecursive(p.høyre, oppgave);  //går gjennom treet for p sitt høye barn og utføre oppgave...
             oppgave.utførOppgave(p.verdi); //utfør oppgaven for hvert steg...
-
     }
 
     public ArrayList<T> serialize() {
