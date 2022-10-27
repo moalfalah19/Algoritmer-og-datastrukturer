@@ -144,12 +144,21 @@ public class SBinTre<T> {
         {
             if (p.venstre != null) p = p.venstre;
             else if (p.høyre != null) p = p.høyre;
-            else return p;
+            else return p; //her sjekker vi om p sin venster eller høyre ikke lik null, så returner vi p
         }
     }
 
     private static <T> Node<T> nestePostorden(Node<T> p) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        Node<T> forelder = p.forelder; //Initialiserer f som p.forelder.
+        if (forelder == null) {
+            return null; // hvis forelder er null, så retunrer i null
+          }
+        if (forelder.høyre == p || forelder.høyre == null){
+            return forelder; //hvis forelder sin høyre barn lik p eller hvis forelder sin høyre barn lik null, så returnerer vi forelder
+        }
+        else {
+            return førstePostorden(forelder.høyre);
+        }
     }
 
     public void postorden(Oppgave<? super T> oppgave) {
