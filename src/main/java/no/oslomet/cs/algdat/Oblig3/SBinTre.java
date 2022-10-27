@@ -163,15 +163,35 @@ public class SBinTre<T> {
 
 
     public void postorden(Oppgave<? super T> oppgave) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        Node<T> p = rot; //Initialiserer p som rot.
+
+        Node<T> forste = førstePostorden(p); //Finner første node av metoden førstePostorden av p.
+
+        oppgave.utførOppgave(forste.verdi);
+
+        while (forste.forelder != null) {
+            forste = nestePostorden(forste);
+            oppgave.utførOppgave(Objects.requireNonNull(forste).verdi);
+            //jeg har laget while løkke som looper gjennom treet og oppdaterer neste verdi i postorden.
+        }
+
     }
 
     public void postordenRecursive(Oppgave<? super T> oppgave) {
-        postordenRecursive(rot, oppgave);
+        if (!tom()) {
+            postordenRecursive(rot, oppgave);
+         }
+        //Dersom treet ikke er tomt, så kaller vi rekursivt på metoden, start ved rot.
     }
 
     private void postordenRecursive(Node<T> p, Oppgave<? super T> oppgave) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        if (p == null) {
+            return;
+        }
+            postordenRecursive(p.venstre, oppgave); //går gjennom treet for p sitt venstre barn og utføre oppgave...
+            postordenRecursive(p.høyre, oppgave);  //går gjennom treet for p sitt høye barn og utføre oppgave...
+            oppgave.utførOppgave(p.verdi); //utfør oppgaven for hvert steg...
+
     }
 
     public ArrayList<T> serialize() {
