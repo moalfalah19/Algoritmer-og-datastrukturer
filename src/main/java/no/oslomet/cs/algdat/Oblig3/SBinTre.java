@@ -161,6 +161,7 @@ public class SBinTre<T> {
         }
     }
 
+
     public void postorden(Oppgave<? super T> oppgave) {
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
